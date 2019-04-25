@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="jquery-ui.js"></script>
+	<script type="text/javascript" src="jquery-imageuploader.js"></script>
+	<link rel="stylesheet" type="text/css" href="jquery-ui.css">
+	<title>image uploader test</title>
+</head>
+<body>
+	<div id="image-uploader" style="width:600px;height:400px;"></div>
+	<img id="image-previewer" style="max-width:400px;max-height:400px;">
+</body>
+	<script type="text/javascript">
+		$(function(){
+			var image_uploader = new ImageUploader({
+				id: "test_uploader", 	//An identifier of this uploader
+				width:"600px",    		//The width of the loader div, not must be the width of the container, 450px is the default value
+				height:"400px",			//the height of the loader div, not must be the height of the container, 260px is the default value
+				container: $("#image-uploader"),  // The jquery element to contain this uploader
+				preview_img: $("#image-previewer"),	//The jquery element to preview the image
+				imageWidth: "100px",    //The width of each image in the array, 100px is the default value
+				imageWidth: "100px",    //The height of each image in the array, 100px is the default value
+				url: "server.php",       //The server url
+				isMulti: true,          // if the user can select more than one image at one time
+				maxCount: -1,           //max count of images that can be selected at one time, if value is not bigger than 0, it is no limit
+				isLocal: false,          // if the image in the array is loaded from the client or server, true is client, and if false, getFileUrl field is recommended to be given
+				getFileUrl: undefined,
+				parameters:{},			//the parameters upload to server with the image,NOTE: the object should be stringified
+				onclearACard: function(fileid){
+					console.log("image "+ fileid + "is deleted");
+				},
+				onclearAll: function(filelist){
+					console.log("clear done!");
+				},
+				onImgClick: function(fileid){
+
+				}
+			});
+		});
+	</script>
+</html>
